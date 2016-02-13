@@ -18,7 +18,7 @@ def serve_ad():
     # Country Code.
     gi = pygeoip.GeoIP("static/GeoIP.dat")  # Lookup for country codes. Obtained from http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
     cc = gi.country_code_by_addr(request.remote_addr)
-    cc = 'CA'  # TODO: Delete when done testing and deployed.
+    # cc = 'CA'  # TODO: Delete when done testing and deployed.
 
     # HTTP Post.
     base_url = "https://offers.pretio.in/publishers/{}/api/?user_id=12345&country_code={}".format(apikey, cc)
