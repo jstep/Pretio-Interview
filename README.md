@@ -10,4 +10,4 @@ Makes an HTTP request to the Pretio API and parses the result
 returns HTML, with the creative URL from the ad response templated in as the src attribute for a fullscreen iframe.
 You can setup the project however you like and use whatever dependencies you see fit.
 
-Deployed with Heroku at (url to project on Heroku)
+Deployed with Heroku at [https://limitless-caverns-16525.herokuapp.com/](https://limitless-caverns-16525.herokuapp.com/)
