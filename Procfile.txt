@@ -1,1 +1,1 @@
-web: gunicorn routes.wsgi
+web: gunicorn routes.py
