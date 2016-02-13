@@ -13,21 +13,24 @@ def home():
 @app.route('/ad')
 def serve_ad():
     # TODO: Obscure api key with a config file.
-    apikey = "c00d0814f0b548c68817473b1605a375"
+    API_KEY = "c00d0814f0b548c68817473b1605a375"
 
     # Country Code.
     gi = pygeoip.GeoIP("static/GeoIP.dat")  # Lookup for country codes. Obtained from http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
-    cc = gi.country_code_by_addr(request.remote_addr)
-    cc = 'CA'  # TODO: Delete when done testing and deployed.
+    if request.headers.getlist("X-Forward-For"):
+        ip = request.headers.getlist("X-Forward-For")[0]
+    else:
+        ip = request.remote_addr
+    cc = "country_code={}".format(gi.country_code_by_addr(ip))
+    cc = 'country_code=CA'  # TODO: Delete when done testing and deployed.
 
     # HTTP Post.
-    base_url = "https://offers.pretio.in/publishers/{}/api/?user_id=12345&country_code={}".format(apikey, cc)
+    base_url = "https://offers.pretio.in/publishers/{}/api/?user_id=12345&{}".format(API_KEY, cc)
     headers = {'content-type': 'application/json'}
     response = requests.post(base_url, headers=headers)
     url_req = response.json()['url']
-    print url_req
 
     return render_template('ad.html', url=url_req)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
