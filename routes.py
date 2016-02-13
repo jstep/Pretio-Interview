@@ -20,12 +20,18 @@ def serve_ad():
     if request.headers.getlist("X-Forward-For"):
         ip = request.headers.getlist("X-Forward-For")[0]
     else:
-        ip = request.remote_addr
-    cc = "country_code={}".format(gi.country_code_by_addr(ip))
-    cc = 'country_code=CA'  # TODO: Delete when done testing and deployed.
+        ip = request.environ['REMOTE_ADDR']
+        # ip = "104.142.123.45"
+
+    if ip != "127.0.0.1":
+        cc = "&country_code={}".format(gi.country_code_by_addr(ip))
+    else:
+        cc = "&country_code=US"
+    # cc = 'country_code=CA'  # TODO: Delete when done testing and deployed.
 
     # HTTP Post.
-    base_url = "https://offers.pretio.in/publishers/{}/api/?user_id=12345&{}".format(API_KEY, cc)
+    base_url = "https://offers.pretio.in/publishers/{}/api/?user_id=12345{}".format(API_KEY, cc)
+    print base_url + "\n\n\n"
     headers = {'content-type': 'application/json'}
     response = requests.post(base_url, headers=headers)
     url_req = response.json()['url']
