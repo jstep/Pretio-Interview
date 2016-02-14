@@ -21,7 +21,7 @@ def serve_ad():
     ip = request.headers.getlist("X-Forward-For")[0]
     # else:
         # ip = request.environ['REMOTE_ADDR']
-        print "ip: " + ip + "\n\n"
+    print "ip: " + ip + "\n\n"
         # ip = "104.142.123.45"
 
     cc = "&country_code={}".format(gi.country_code_by_addr(ip))
