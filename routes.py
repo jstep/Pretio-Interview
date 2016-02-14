@@ -17,9 +17,9 @@ def serve_ad():
 
     # Country Code.
     gi = pygeoip.GeoIP("static/GeoIP.dat")  # Lookup for country codes. Obtained from http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
-    ip = request.headers.getlist("X-Forward-For")[0]
-    print "request.headers : " + str(request.headers)
-    print "request.headers[-1] : " + ip
+    # ip = request.headers.getlist("X-Forward-For")[0]
+    # print "request.headers : " + str(request.headers)
+    # print "request.headers[-1] : " + ip
 
     ip = request.environ['REMOTE_ADDR']
     print "remote_addr : " + ip
