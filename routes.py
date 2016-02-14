@@ -26,11 +26,8 @@ def serve_ad():
     cc = "&country_code={}".format(gi.country_code_by_addr(ip))
     cc = "&country_code=US"
 
-    print ip + "\n\n\n\n"+ cc 
-
     # HTTP Post.
     base_url = "https://offers.pretio.in/publishers/{}/api/?user_id=12345{}".format(API_KEY, cc)
-    print base_url + "\n\n\n"
     headers = {'content-type': 'application/json'}
     response = requests.post(base_url, headers=headers)
     url = response.json()['url']
