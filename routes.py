@@ -12,7 +12,7 @@ def home():
 
 @app.route('/ad')
 def serve_ad():
-    # TODO: Obscure api key with a config file.
+    # TODO: Obscure api key with a config file. And destroy this key.
     API_KEY = "c00d0814f0b548c68817473b1605a375"
 
     gi = pygeoip.GeoIP("static/GeoIP.dat")  # Lookup for country codes. Obtained from http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
@@ -38,4 +38,4 @@ def serve_ad():
     return render_template('ad.html', url=url)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
