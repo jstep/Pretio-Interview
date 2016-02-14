@@ -20,7 +20,7 @@ def serve_ad():
 
     ip = request.environ['REMOTE_ADDR']
     ip = request.headers.getlist("X-Forwarded-For")
-    print "headers.getlist("X-Forwarded-For") : " + ip
+    print "headers.getlist('X-Forwarded-For') : " + ip
     ip = "104.142.123.45"
     print "ip : " + ip
 
