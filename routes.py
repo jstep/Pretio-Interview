@@ -27,7 +27,7 @@ def serve_ad():
     if gi.country_code_by_addr(ip):
         cc = "&country_code={}".format(gi.country_code_by_addr(ip))
     else:
-        cc = "&country_code=CA"
+        cc = ""
 
     # HTTP Post.
     base_url = "https://offers.pretio.in/publishers/{}/api/?user_id=12345{}".format(API_KEY, cc)
